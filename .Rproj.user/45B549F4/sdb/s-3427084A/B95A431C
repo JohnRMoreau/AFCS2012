@@ -1,0 +1,17 @@
+{
+    "contents" : "#Full code for NFSC (state version)\n\n#extract function\nextract <- function(datafile, namefile){\n  extvect <- which(colnames(datafile) %in% namefile[,1])  ## Get a vector of columns to pull\n  extdf <- datafile[,extvect]                             ## Extract the desired columns\n  namelen <- nrow(namefile)                             ## #Cols in name file - don't assume all names are in data\n  for (i in 1:namelen) {\n    coln  <- match(namefile[i,1],colnames(extdf))        ##Doesn't assume same order, gets the col num for the data\n    colnames(extdf)[coln] <- as.character(namefile[i,2])\n  }\n  extdf\n}\n#Call the data\nNFCS2012 <- read.csv(file = \"NFCS 2012 State Data 130503.csv\")\nNFCSnames <- read.csv(file = \"NFCS12Names.csv\")\nextracted <- extract(NFCS2012,NFCSnames)\nreftbl<-read.csv(\"NFCSStateref.csv\")\ndecoded <- decode(extracted,reftbl)\n",
+    "created" : 1408576857805.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "919040570",
+    "id" : "B95A431C",
+    "lastKnownWriteTime" : 1408579324,
+    "path" : "~/gitfork/AFSC/NFSCfullcode.R",
+    "project_path" : "NFSCfullcode.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

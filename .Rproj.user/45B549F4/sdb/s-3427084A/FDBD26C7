@@ -1,0 +1,17 @@
+{
+    "contents" : "## Command to extract data from a frame and rename it\n\n## Future improvements\n##    check that everything in name file is character data and not factors\n##    Import the files from the disk\n##    Check to see if any ref names are not in the file\n##    Ask what the unique ID is, if any, and assign to the rownames\n##    Vectorize the for statement, use sapply\n\nextract <- function(datafile, namefile){\n  extvect <- which(colnames(datafile) %in% namefile[,1])  ## Get a vector of columns to pull\n  extdf <- datafile[,extvect]                             ## Extract the desired columns\n  namelen <- nrow(namefile)                             ## #Cols in name file - don't assume all names are in data\n  for (i in 1:namelen) {\n    coln  <- match(namefile[i,1],colnames(extdf))        ##Doesn't assume same order, gets the col num for the data\n    colnames(extdf)[coln] <- as.character(namefile[i,2])\n  }\n  extdf\n}\ndecode <- function(datatbl, refvals){   \n  refc <-   colnames(refvals)\n  datac <-  colnames(datatbl)\n  ##get a list of the columns in both tables\n  goodc <- refc[which(refc %in% datac)]\n  \n  for(i in 1:length(goodc)){\n    datatbl[,goodc[i]] <- refvals[as.character(datatbl[,goodc[i]]),goodc[i]]\n  }\n  invisible(datatbl)\n}\n\n",
+    "created" : 1408574756965.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1036663296",
+    "id" : "FDBD26C7",
+    "lastKnownWriteTime" : 1408579324,
+    "path" : "~/gitfork/AFSC/extract.R",
+    "project_path" : "extract.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

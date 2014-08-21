@@ -1,0 +1,17 @@
+{
+    "contents" : "extract <- function(datafile, namefile){\nextvect <- which(colnames(datafile) %in% namefile[,1])  ## Get a vector of columns to pull\nextdf<-data.frame(row.names = c(1:nrow(datafile)))\nfor (i in 1:nrow(namefile)) {\nextdf[,as.character(namefile[i,2])]<- datafile[,(namefile[i,1])]\n}\nextdf\n}\n",
+    "created" : 1408575312648.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3056931670",
+    "id" : "1B42DB47",
+    "lastKnownWriteTime" : -6444287979650500706,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
